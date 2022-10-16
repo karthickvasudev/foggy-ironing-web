@@ -1,6 +1,4 @@
 import React from "react";
-import { GoogleLogout } from "react-google-login";
-import { Navigate, useNavigate } from "react-router-dom";
 const constants = require("../constants/Constants");
 
 export default function Dashboard() {
@@ -30,16 +28,16 @@ function bigscreen(props) {
           <div className="card bg-secondary">
           <h5 className="card-title m-2">Completed</h5>
             <div className="card-body">
-              
+
               <p class="fs-1 text-center mb-0">{completed}</p>
             </div>
           </div>
         </span>
         <span className="col-3 ">
           <div className="card bg-success">
-          <h5 className="card-title m-2">Revenue </h5>  
+          <h5 className="card-title m-2">Revenue </h5>
             <div className="card-body ">
-              
+
               <p class="fs-1 text-center mb-0">₹ {revenue}</p>
             </div>
           </div>

@@ -1,0 +1,12 @@
+[
+    {
+        "name": "HOME",
+        "link": "/",
+        "userType": "admin/user"
+    },
+    {
+        "name": "ORDERS",
+        "link": "/orders",
+        "userType": "admin/user"
+    }
+]

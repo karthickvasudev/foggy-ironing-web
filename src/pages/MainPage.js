@@ -10,7 +10,9 @@ export default function MainPage() {
     return (
       <>
         <NavBar />
-        <Outlet></Outlet>
+        <div id="content-wrapper" className="container mt-2">
+          <Outlet></Outlet>
+        </div>
       </>
     );
   }

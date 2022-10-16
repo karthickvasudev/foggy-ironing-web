@@ -12,12 +12,12 @@ export default function Login() {
 
   const loginSuccessHandle = (response) => {
     auth.loggedIn(response.profileObj);
-    navigate("/dashboard", { replace: true });
+    navigate("/", { replace: true });
   };
 
   const loginFailureHandle = () => {
     auth.loggedOut();
-    navigate("/", { replace: true });
+    navigate("/user/login", { replace: true });
   };
 
   return (

@@ -1,22 +1,30 @@
 import React from "react";
-import { GoogleLogout } from "react-google-login";
-import { Navigate, useNavigate } from "react-router-dom";
 const constants = require("../constants/Constants");
 
 export default function Dashboard() {
-  const navigate = useNavigate();
+  return <>
+  <h2 className="page-title">Dashboard</h2>
+  {bigScreen()}
+  </>;
+}
 
-  const logoutSuccess = () => {
-    sessionStorage.clear();
-    navigate("/", { replace: true });
-  };
+function bigScreen() {
   return (
-    <div>
-      <GoogleLogout
-        clientId={constants.CLIENT_ID}
-        buttonText="Logout"
-        onLogoutSuccess={logoutSuccess}
-      ></GoogleLogout>
-    </div>
+    <>
+      <div className="dashboard-tiles big-screen row justify-content-center mt-3">
+        <div className="card col-2">
+          <h5 className="card-title m-2">Orders</h5>
+          <div className="card-body text-center fs-4">0</div>
+        </div>
+        <div className="card col-2 mx-4">
+          <h5 className="card-title m-2">Completed</h5>
+          <div className="card-body text-center fs-4">0</div>
+        </div>
+        <div className="card col-2">
+          <h5 className="card-title m-2">Revenue</h5>
+          <div className="card-body text-center fs-4">₹ 0.00</div>
+        </div>
+      </div>
+    </>
   );
 }

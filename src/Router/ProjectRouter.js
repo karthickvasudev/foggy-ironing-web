@@ -10,6 +10,7 @@ import MainPage from "../pages/MainPage";
 import Login from "../pages/Login";
 import RequireAuth from "../components/RequireAuth";
 import Orders from "../pages/Orders";
+import CreateOrder from "../pages/CreateOrder";
 const cors = require("cors");
 
 const constants = require("../constants/Constants");
@@ -33,7 +34,7 @@ export default function ProjectRouter() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/user/login" element={<Login />} />          
+          <Route path="/user/login" element={<Login />} />
           <Route
             path="/"
             element={
@@ -50,16 +51,25 @@ export default function ProjectRouter() {
                 </RequireAuth>
               }
             />
-            <Route
-              path="orders"
-              element={
-                <RequireAuth>
-                  <Orders />
-                </RequireAuth>
-              }
-            />
+            <Route path="orders">
+              <Route
+                path=""
+                element={
+                  <RequireAuth>
+                    <Orders />
+                  </RequireAuth>
+                }
+              ></Route>
+              <Route
+                path="create"
+                element={
+                  <RequireAuth>
+                    <CreateOrder />
+                  </RequireAuth>
+                }
+              />
+            </Route>
           </Route>
-        
         </Routes>
       </BrowserRouter>
     </AuthProvider>

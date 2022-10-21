@@ -1,8 +1,7 @@
 import React from "react";
-import ActionGear from "./ActionGear";
 
 function LaptopTables(props) {
-  const { tableName, headerColumns, rows, actionGear } = props;
+  const { tableName, headerColumns, rows } = props;
   return (
     <div className={tableName}>
       <table className="table table-striped text-center">
@@ -18,7 +17,6 @@ function LaptopTables(props) {
         <tbody>
           <tr>
             {getRows(rows)}
-            <td>{ActionGear(actionGear)}</td>
           </tr>
         </tbody>
       </table>

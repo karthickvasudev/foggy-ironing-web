@@ -1,6 +1,8 @@
 import React from "react";
 import LaptopTables from "../components/LaptopTables";
+import SearchSection from "../components/SearchSection";
 import OrderList from "../mobilecomponents/OrderList";
+import ActionGear from "../components/ActionGear";
 
 export default function Orders() {
   const orderHeaders = [
@@ -18,7 +20,7 @@ export default function Orders() {
     {
       name: "View",
       type: "link",
-      link: "/",
+      link: "/orders/ORD-00001",
       action: null,
     },
     {
@@ -34,17 +36,15 @@ export default function Orders() {
   const tableProperties = {
     tableName: "order-table",
     headerColumns: orderHeaders,
-    rows: ["value", "value"],
-    actionGear: actionGear,
+    rows: ["value", "value", ActionGear(actionGear)],
   };
 
-  const data ={
-    
-  }
+  const searchProps = { link: "/orders/create" };
 
   return (
     <>
       <h2 className="page-title mt-2">Orders</h2>
+      {SearchSection(searchProps)}
       <div className="d-none d-md-block non-mobile">
         {LaptopTables(tableProperties)}
       </div>

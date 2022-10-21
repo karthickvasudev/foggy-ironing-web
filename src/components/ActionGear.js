@@ -30,7 +30,11 @@ function getActionItem(props) {
   }
   if (type === "action") {
     return (
-      <button className="dropdown-item action-button" type="button" onClick={action}>
+      <button
+        className="dropdown-item action-button"
+        type="button"
+        onClick={action}
+      >
         {name}
       </button>
     );

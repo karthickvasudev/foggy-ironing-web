@@ -44,11 +44,13 @@ export default function Orders() {
   return (
     <>
       <h2 className="page-title mt-2">Orders</h2>
-      {SearchSection(searchProps)}
+      <SearchSection data={searchProps} />
       <div className="d-none d-md-block non-mobile">
         {LaptopTables(tableProperties)}
       </div>
-      <div className="d-md-none order-table mobile"> {OrderList()} </div>
+      <div className="d-md-none order-table mobile">
+        <OrderList />
+      </div>
     </>
   );
 }

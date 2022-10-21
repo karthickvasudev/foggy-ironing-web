@@ -1,7 +1,7 @@
 import React from "react";
 
 function SearchSection(props) {
-  const { link } = props;
+  const { link } = props.data;
   return (
     <>
       <div className="search-section justify-content-center row">

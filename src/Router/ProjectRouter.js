@@ -11,6 +11,11 @@ import Login from "../pages/Login";
 import RequireAuth from "../components/RequireAuth";
 import Orders from "../pages/Orders";
 import ViewOrder from "../pages/ViewOrder";
+import ProductList from "../pages/products/ProductList";
+import CreateProduct from "../pages/products/CreateProduct";
+import PageNotFound from "../pages/PageNotFound";
+import CustomerList from "../pages/customers/CustomerList";
+import CreateCustomer from "../pages/customers/CreateCustomer";
 const cors = require("cors");
 
 const constants = require("../constants/Constants");
@@ -33,7 +38,9 @@ export default function ProjectRouter() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        {/* login page parent route */}
         <Routes>
+          <Route path="/*" element={<PageNotFound />} />
           <Route path="/user/login" element={<Login />} />
           <Route
             path="/"
@@ -43,6 +50,7 @@ export default function ProjectRouter() {
               </RequireAuth>
             }
           >
+            {/* dashboard */}
             <Route
               path=""
               element={
@@ -51,6 +59,7 @@ export default function ProjectRouter() {
                 </RequireAuth>
               }
             />
+            {/* Orders route */}
             <Route path="orders">
               <Route
                 path=""
@@ -65,6 +74,47 @@ export default function ProjectRouter() {
                 element={
                   <RequireAuth>
                     <ViewOrder />
+                  </RequireAuth>
+                }
+              />
+            </Route>
+
+            {/* Product Route */}
+
+            <Route path="products">
+              <Route
+                path=""
+                element={
+                  <RequireAuth>
+                    <ProductList />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="create"
+                element={
+                  <RequireAuth>
+                    <CreateProduct />
+                  </RequireAuth>
+                }
+              />
+            </Route>
+
+            {/* customers rout */}
+            <Route path="customers">
+              <Route
+                path=""
+                element={
+                  <RequireAuth>
+                    <CustomerList />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="create"
+                element={
+                  <RequireAuth>
+                    <CreateCustomer />
                   </RequireAuth>
                 }
               />

@@ -1,6 +1,7 @@
 import React from "react";
 
 function MoreOptions(props) {
+  props = props.data;
   return (
     <div className="menu-options d-flex justify-content-end">
       <div className="dropstart">
@@ -30,8 +31,8 @@ const getMenuItems = (prop, key) => {
         </a>
       </li>
     );
-  } 
-  if(type==='action') {
+  }
+  if (type === "action") {
     return (
       <li key={key} onClick={action}>
         <span className="dropdown-item">{name}</span>

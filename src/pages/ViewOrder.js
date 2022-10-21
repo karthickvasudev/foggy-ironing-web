@@ -22,8 +22,8 @@ function ViewOrder() {
 
   const OrderDetailsCard = () => {
     return (
-      <div class="card mt-3 order-details">
-        <div class="card-body row">
+      <div className="card mt-3 order-details">
+        <div className="card-body row">
           <OrderDetails />
         </div>
       </div>
@@ -34,16 +34,22 @@ function ViewOrder() {
     return (
       <>
         <div className="col-md-6 row my-2">
-          <span className="col-6 fw-bold">Key :</span>
-          <span className="col-6">value</span>
+          <span className="col-3 fw-bold d-flex justify-content-end">
+            Key :
+          </span>
+          <span className="col-9">value</span>
         </div>
         <div className="col-md-6 row my-2">
-          <span className="col-6 fw-bold">Key :</span>
-          <span className="col-6">value</span>
+          <span className="col-3 fw-bold d-flex justify-content-end">
+            Key :
+          </span>
+          <span className="col-9">value</span>
         </div>
         <div className="col-md-6 row my-2">
-          <span className="col-6 fw-bold">Key :</span>
-          <span className="col-6">value</span>
+          <span className="col-3 fw-bold d-flex justify-content-end">
+            Key :
+          </span>
+          <span className="col-9">value</span>
         </div>
       </>
     );
@@ -51,8 +57,8 @@ function ViewOrder() {
 
   const ProductDetailsCard = () => {
     return (
-      <div class="card mt-3 product-details">
-        <div class="card-body row"></div>
+      <div className="card mt-3 product-details">
+        <div className="card-body row"></div>
       </div>
     );
   };
@@ -60,9 +66,9 @@ function ViewOrder() {
   return (
     <>
       <h3 className="page-title">{id}</h3>
-      {MoreOptions(menuItems)}
-      {<OrderDetailsCard />}
-      {<ProductDetailsCard />}
+      <MoreOptions data={menuItems} />
+      <OrderDetailsCard />
+      <ProductDetailsCard />
     </>
   );
 }

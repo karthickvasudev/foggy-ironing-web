@@ -16,6 +16,7 @@ import CreateProduct from "../pages/products/CreateProduct";
 import PageNotFound from "../pages/PageNotFound";
 import CustomerList from "../pages/customers/CustomerList";
 import CreateCustomer from "../pages/customers/CreateCustomer";
+import CreateOrder from "../pages/CreateOrder";
 const cors = require("cors");
 
 const constants = require("../constants/Constants");
@@ -59,6 +60,24 @@ export default function ProjectRouter() {
                 </RequireAuth>
               }
             />
+            <Route path="orders">
+              <Route
+                path=""
+                element={
+                  <RequireAuth>
+                    <Orders />
+                  </RequireAuth>
+                }
+              ></Route>
+              <Route
+                path="create"
+                element={
+                  <RequireAuth>
+                    <CreateOrder />
+                  </RequireAuth>
+                }
+              />
+            </Route>
             {/* Orders route */}
             <Route path="orders">
               <Route

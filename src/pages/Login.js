@@ -7,7 +7,7 @@ const logo = require("../pictures/foggy_ironing_logo.png");
 const constants = require("../constants/Constants");
 
 export default function Login() {
-  const isGoogleLogin = true;
+  const isGoogleLogin = false;
 
   const devKeys = [
     "714d5571-01fd-4990-af6f-743a4c55a287",

@@ -7,7 +7,7 @@ const logo = require("../pictures/foggy_ironing_logo.png");
 const constants = require("../constants/Constants");
 
 export default function Login() {
-  const isGoogleLogin = false;
+  const isGoogleLogin = true;
 
   const devKeys = [
     "714d5571-01fd-4990-af6f-743a4c55a287",
@@ -43,12 +43,15 @@ export default function Login() {
       ) {
         alert("login error");
       } else {
-        if (!(devKeys[0] === profile.devKey) || !(devKeys[1] === profile.devId)) {
+        if (
+          !(devKeys[0] === profile.devKey) ||
+          !(devKeys[1] === profile.devId)
+        ) {
           alert("login error");
         } else {
           auth.loggedIn(profile);
           navigate("/", { replace: true });
-          window.location.reload()
+          window.location.reload();
         }
       }
     };

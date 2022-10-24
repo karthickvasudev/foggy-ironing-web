@@ -1,6 +1,14 @@
-const CLIENT_ID =
+export const CLIENT_ID =
   "662913830723-bl3tn95aau1undbahnvaoib9j7ak4p5d.apps.googleusercontent.com";
 
-const sessionKey = "profile";
+export const sessionKey = "profile";
 
-export {CLIENT_ID, sessionKey};
+export const firebaseConfig = {
+  apiKey: "AIzaSyBpL9R351vsrkdJc6SDWvsbIsRiSLa0T3o",
+  authDomain: "foggy-demo.firebaseapp.com",
+  projectId: "foggy-demo",
+  storageBucket: "foggy-demo.appspot.com",
+  messagingSenderId: "852061930239",
+  appId: "1:852061930239:web:1458bc9f57df211565c2ca",
+  measurementId: "G-7DWKQWTCRR",
+};

@@ -1,8 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import MoreOptions from "../components/MoreOptions";
+import MoreOptions from "../../components/MoreOptions";
 
-function ViewOrder() {
+function ViewOrder(props) {
+  console.log(props);
   const { id } = useParams();
 
   const menuItems = [

@@ -1,7 +1,7 @@
 import React from "react";
 import { useLongPress } from "use-long-press";
 
-function OrderList(props) {
+function OrderMobileList(props) {
   const longPressEvent = useLongPress(() => {
     console.log("long pres working");
   });
@@ -59,4 +59,4 @@ const getOrder = (prop, longPressEvent) => {
   );
 };
 
-export default OrderList;
+export default OrderMobileList;

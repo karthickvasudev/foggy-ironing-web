@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function SearchSection(props) {
-  const { link } = props.data;
+function SearchSection({ data, searchData }) {
+  const { link } = data;
   return (
     <>
       <div className="search-section justify-content-center row">
@@ -15,6 +15,9 @@ function SearchSection(props) {
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
+              onChange={(e) => {
+                searchData(e.target.value);
+              }}
             />
           </div>
         </span>

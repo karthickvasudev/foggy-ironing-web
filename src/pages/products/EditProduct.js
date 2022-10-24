@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { showSuccessAlert } from "../../components/Alert";
-import DocumentNumberFireStore from "../../firestore/DocumentNumberFireStore";
+import { GetDateTime } from "../../constants/DateTimeUtil";
 import ProductFireStore from "../../firestore/ProductFireStore";
 
-function CreateProduct() {
+function EditProduct() {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const { state } = useLocation();
+  const { data } = state;
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    if (data) {
+      reset(data);
+    }
+  }, [data]);
+
   const onSubmit = (data) => {
-    ProductFireStore.create(data).then((e) => {
-      showSuccessAlert("Product created Successfully")
-      DocumentNumberFireStore.incrementProductNumber()
+    data.updatedBy = JSON.parse(sessionStorage.getItem("profile")).email;
+    data.updatedOn = GetDateTime();
+    ProductFireStore.update(data).then((e) => {
+      showSuccessAlert("Product updated successfully");
       navigate("/products/" + data.productId, {
         replace: true,
       });
@@ -24,10 +35,6 @@ function CreateProduct() {
   };
 
   const ProductForm = () => {
-    const [productId, setProductId] = useState("");
-    DocumentNumberFireStore.getProductNumber().then((value) => {
-      setProductId(value.data().doc_id);
-    });
     return (
       <form
         className="mt-5"
@@ -44,14 +51,12 @@ function CreateProduct() {
               type="text"
               className="form-control"
               id="productId"
-              value={productId}
+              value={id}
               readOnly
               autoFocus="on"
               {...register("productId", { required: true })}
             />
-            <small className="text-muted mx-2">
-              Product id is auto generated
-            </small>
+            <small className="text-muted mx-2">Product id can't be edit</small>
           </div>
         </div>
 
@@ -135,10 +140,25 @@ function CreateProduct() {
     return (
       <div className="submit-clear-button mb-3 d-flex justify-content-end mt-3">
         <button type="submit" className="btn btn-primary mx-2">
-          Create
+          Update
         </button>
-        <button type="reset" className="btn btn-secondary mx-2" >
-          Clear
+        <button
+          type="button"
+          className="btn btn-secondary mx-2"
+          onClick={() => {
+            reset(data);
+          }}
+        >
+          Reset
+        </button>
+        <button
+          type="button"
+          className="btn btn-secondary mx-2"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Back
         </button>
       </div>
     );
@@ -146,10 +166,10 @@ function CreateProduct() {
 
   return (
     <>
-      <h3>Create Product</h3>
-      {<ProductForm />}
+      <h3>{id}</h3>
+      <ProductForm />
     </>
   );
 }
 
-export default CreateProduct;
+export default EditProduct;

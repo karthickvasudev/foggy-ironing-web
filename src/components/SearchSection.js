@@ -5,7 +5,7 @@ function SearchSection({ data, searchData }) {
   return (
     <>
       <div className="search-section justify-content-center row">
-        <span className="search-input col-8">
+        <span className="search-input col-md-8 col-9">
           <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">
               Search
@@ -21,7 +21,7 @@ function SearchSection({ data, searchData }) {
             />
           </div>
         </span>
-        <span className="create-btn col-1">
+        <span className="create-btn col-md-1 col-3">
           <a className="btn btn-primary" href={link}>
             Create
           </a>

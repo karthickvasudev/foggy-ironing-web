@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import DatabaseNew from "../firestore/DatabaseNew";
 import NavBar from "./NavBar";
 
 export default function MainPage() {
@@ -7,6 +8,7 @@ export default function MainPage() {
   if (sessionStorage.getItem("profile") == null) {
     navigate("/user/login", { replace: true });
   } else {
+    DatabaseNew();
     return (
       <>
         <NavBar />

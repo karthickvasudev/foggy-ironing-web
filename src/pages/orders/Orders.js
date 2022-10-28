@@ -20,11 +20,13 @@ export default function Orders() {
 
   const searchProps = { link: "/orders/create" };
 
+  
+
   return (
     <>
       <h2 className="page-title mt-2">Orders</h2>
       <SearchSection data={searchProps} />
-      {screenMd && <LaptopTables />}
+      {/* {screenMd && <LaptopTables />} */}
       {screenMdNone && <OrderMobileList />}
     </>
   );

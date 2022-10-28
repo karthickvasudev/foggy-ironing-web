@@ -29,6 +29,11 @@ function ProductList() {
         setProductList(list);
         setSearchBackup(list);
         setLaptopTableValues(list);
+      }).catch(e=>{
+        console.log(e);
+        if(e === 'FirebaseError: Quota exceeded.'){
+          
+        }
       });
     parseRows();
   }, []);

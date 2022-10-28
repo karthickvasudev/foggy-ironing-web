@@ -1,8 +1,6 @@
 import React from "react";
-import { useGoogleLogout } from "react-google-login";
 import { useNavigate } from "react-router-dom";
 const menuItems = require("../constants/menuItems.json");
-const constants = require("../constants/Constants");
 
 export default function NavBar() {
   const userDetails = require("../components/UserDetails").getUserDetails();

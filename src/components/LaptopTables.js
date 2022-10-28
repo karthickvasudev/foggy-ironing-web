@@ -1,14 +1,13 @@
 import React from "react";
-import ActionGear from "./ActionGear";
 
-function LaptopTables(props) {
-  const { tableName, headerColumns, rows, actionGear } = props;
+function LaptopTables({ tableName, headers, rows }) {
+  
   return (
     <div className={tableName}>
       <table className="table table-striped text-center">
         <thead>
           <tr>
-            {headerColumns.map((header, key) => (
+            {headers.map((header, key) => (
               <th key={key} scope="col">
                 {header}
               </th>
@@ -16,21 +15,20 @@ function LaptopTables(props) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            {getRows(rows)}
-            <td>{ActionGear(actionGear)}</td>
-          </tr>
+          {rows.map((row, key) => {
+            return <tr key={key}>{getColumns(row)}</tr>;
+          })}
         </tbody>
       </table>
     </div>
   );
 }
 
-function getRows(rows) {
+function getColumns(rows) {
   return rows.map((row, key) => (
-    <th key={key} scope="row">
+    <td key={key} scope="col">
       {row}
-    </th>
+    </td>
   ));
 }
 

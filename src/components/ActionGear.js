@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ActionGear(props) {
+  const [data] = useState(props.data)
   return (
     <>
       <div className="action-gear dropstart">
@@ -10,7 +11,7 @@ function ActionGear(props) {
           aria-hidden="true"
         ></i>
         <ul className="dropdown-menu">
-          {props.map((prop, key) => (
+          {props.data.map((prop, key) => (
             <li key={key}> {getActionItem(prop)} </li>
           ))}
         </ul>
@@ -30,7 +31,11 @@ function getActionItem(props) {
   }
   if (type === "action") {
     return (
-      <button className="dropdown-item action-button" type="button" onClick={action}>
+      <button
+        className="dropdown-item action-button"
+        type="button"
+        onClick={action}
+      >
         {name}
       </button>
     );

@@ -5,8 +5,18 @@
         "userType": "admin/user"
     },
     {
+        "name": "PRODUCTS",
+        "link": "/products",
+        "userType": "admin"
+    },
+    {
         "name": "ORDERS",
         "link": "/orders",
         "userType": "admin/user"
+    },
+    {
+        "name": "CUSTOMERS",
+        "link": "/customers",
+        "userType": "admin"
     }
 ]

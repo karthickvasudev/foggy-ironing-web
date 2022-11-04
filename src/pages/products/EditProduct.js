@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { showSuccessAlert } from "../../components/Alert";
+import axios from "axios";
+import { showErrorAlert, showSuccessAlert } from "../../components/Alert";
 import { GetDateTime } from "../../constants/DateTimeUtil";
-import ProductFireStore from "../../firestore/ProductFireStore";
+import { ApiUrl } from "../../constants/Constants";
 
 function EditProduct() {
   const navigate = useNavigate();
@@ -24,14 +25,21 @@ function EditProduct() {
   }, [data]);
 
   const onSubmit = (data) => {
-    data.updatedBy = JSON.parse(sessionStorage.getItem("profile")).email;
-    data.updatedOn = GetDateTime();
-    ProductFireStore.update(data).then((e) => {
-      showSuccessAlert("Product updated successfully");
-      navigate("/products/" + data.productId, {
-        replace: true,
+    axios
+      .put(ApiUrl.products + "/" + id, data)
+      .then((response) => {
+        if (response.status === 200) {
+          showSuccessAlert("Product updated Successfully");
+          navigate("/products/" + data.id, {
+            replace: true,
+          });
+        } else {
+          showErrorAlert("Oops! something went wrong");
+        }
+      })
+      .catch(() => {
+        showErrorAlert("Oops! something went wrong");
       });
-    });
   };
 
   const ProductForm = () => {
@@ -54,7 +62,7 @@ function EditProduct() {
               value={id}
               readOnly
               autoFocus="on"
-              {...register("productId", { required: true })}
+              {...register("id", { required: true })}
             />
             <small className="text-muted mx-2">Product id can't be edit</small>
           </div>
@@ -70,7 +78,7 @@ function EditProduct() {
               type="text"
               className="form-control"
               id="name"
-              {...register("productName", { required: true })}
+              {...register("name", { required: true })}
             />
             {errors.productName && (
               <p className="mt-2 text-danger">Product name is required</p>

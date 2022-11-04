@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ProductFireStore from "../../firestore/ProductFireStore";
+
 
 export default function CreateOrder() {
   const [products, setProducts] = useState([]);
@@ -7,10 +7,10 @@ export default function CreateOrder() {
   const [totalQty, setTotalQty] = useState(0);
 
   useEffect(() => {
-    ProductFireStore.getAll().then((list) => {
-      const activeProducts = list.filter((li) => li.active === true);
-      setProducts(activeProducts);
-    });
+    // ProductFireStore.getAll().then((list) => {
+    //   const activeProducts = list.filter((li) => li.active === true);
+    //   setProducts(activeProducts);
+    // });
   });
 
   const ProductDetailsCard = ({ data }) => {

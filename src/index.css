@@ -15,3 +15,21 @@ code {
 .mouse {
   cursor: pointer;
 }
+
+.waveAnimation span{
+  display: inline-block;
+  animation: waveAnimation 1s infinite;
+  animation-delay: calc(.1s * var(--i));
+}
+
+@keyframes waveAnimation {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0)
+  }
+
+  20% {
+    transform: translateY(-20px)
+  }
+}

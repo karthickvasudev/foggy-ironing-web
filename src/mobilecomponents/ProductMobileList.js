@@ -12,15 +12,15 @@ function ProductMobileList(props) {
   const ProductCard = (prop) => {
     const product = prop.data;
     return (
-      <div className="card mt-2 mouse" onClick={()=>navigateToViewPage(product.productId)}>
+      <div className="card mt-2 mouse" onClick={()=>navigateToViewPage(product.id)}>
         <div className="card-body row mx-0">
           <h5 className="card-title">
-            {product.productId}
+            {product.id}
           </h5>
 
           <div className="product-id col text-center">
             <span className="fw-bold">Name</span>
-            <p className="mt-3">{product.productName}</p>
+            <p className="mt-3">{product.name}</p>
           </div>
           <div className="product-quantity col text-center">
             <span className="fw-bold">Quantity</span>

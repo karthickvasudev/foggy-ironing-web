@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import ActionGear from "../../components/ActionGear";
-import ProductFireStore from "../../firestore/ProductFireStore";
+import axios from "axios";
+import { ApiUrl } from "../../constants/Constants";
 
 function ViewProduct() {
   const { id } = useParams();
@@ -9,12 +9,9 @@ function ViewProduct() {
   const [product, setProduct] = useState({});
 
   useEffect(() => {
-    const getProduct = async () =>
-      ProductFireStore.getProduct(id).then(async (data) => {
-        await setProduct(data);
-      });
-
-    getProduct();
+    axios.get(ApiUrl.products + "/" + id).then((response) => {
+      setProduct(response.data);
+    });
   }, []);
 
   const ProductDetails = () => {
@@ -24,14 +21,14 @@ function ViewProduct() {
           <span className="col-md-2 col-6 fw-bold d-flex justify-content-start">
             Product Id :
           </span>
-          <span className="col-6">{product.productId}</span>
+          <span className="col-6">{product.id}</span>
         </div>
 
         <div className="col-md-12 row my-2 product-name">
           <span className="col-md-2 col-6 fw-bold d-flex justify-content-start">
             Name :
           </span>
-          <span className="col-6">{product.productName}</span>
+          <span className="col-6">{product.name}</span>
         </div>
 
         <div className="col-md-12 row my-2 quantity">

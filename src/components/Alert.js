@@ -1,5 +1,5 @@
 const showSuccessAlert = (message) => {
-  const alertPlaceholder = document.getElementById("content-wrapper");
+  const alertPlaceholder = document.getElementById("alert-wrapper");
   const wrapper = document.createElement("div");
   wrapper.innerHTML = [
     `<div class="alert alert-success alert-dismissible" role="alert">`,
@@ -12,7 +12,7 @@ const showSuccessAlert = (message) => {
 };
 
 const showErrorAlert = (message) => {
-  const alertPlaceholder = document.getElementById("content-wrapper");
+  const alertPlaceholder = document.getElementById("alert-wrapper");
   const wrapper = document.createElement("div");
   wrapper.innerHTML = [
     `<div class="alert alert-danger alert-dismissible" role="alert">`,

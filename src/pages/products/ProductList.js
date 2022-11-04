@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ActionGear from "../../components/ActionGear";
@@ -6,8 +5,9 @@ import LaptopTables from "../../components/LaptopTables";
 import ScrollToTop from "../../components/ScrollToTop";
 import SearchSection from "../../components/SearchSection";
 import useScreensize from "../../components/useScreensize";
-import ProductFireStore from "../../firestore/ProductFireStore";
+import { ApiUrl } from "../../constants/Constants";
 import ProductMobileList from "../../mobilecomponents/ProductMobileList";
+import axios from "axios";
 
 function ProductList() {
   const { screenMd, screenMdNone } = useScreensize();
@@ -24,18 +24,11 @@ function ProductList() {
     "ACTION",
   ];
   useEffect(() => {
-    const parseRows = () =>
-      ProductFireStore.getAll().then((list) => {
-        setProductList(list);
-        setSearchBackup(list);
-        setLaptopTableValues(list);
-      }).catch(e=>{
-        console.log(e);
-        if(e === 'FirebaseError: Quota exceeded.'){
-          
-        }
-      });
-    parseRows();
+    axios.get(ApiUrl.products).then((response) => {
+      setProductList(response.data);
+      setSearchBackup(response.data);
+      setLaptopTableValues(response.data);
+    });
   }, []);
 
   const setLaptopTableValues = (originList) => {
@@ -45,13 +38,13 @@ function ProductList() {
         {
           name: "View",
           type: "link",
-          link: "products/" + li.productId,
+          link: "products/" + li.id,
         },
         {
           name: "Edit",
           type: "action",
           action: () => {
-            navigate("/products/" + li.productId + "/edit", {
+            navigate("/products/" + li.id + "/edit", {
               state: { data: li },
             });
           },
@@ -59,8 +52,8 @@ function ProductList() {
       ];
 
       const arr = [
-        li.productId,
-        li.productName,
+        li.id,
+        li.name,
         li.quantity,
         "₹ " + li.price,
         li.active ? "Active" : "Inactive",
@@ -79,13 +72,12 @@ function ProductList() {
     }
 
     let searchedResult = searchBackup.filter((product) => {
-      
       return (
-        ((product.active ? 'active':'inactive') === value)||
-        product.productId.includes(value) ||
-        product.productName.includes(value) ||
-        product.quantity.includes(value) ||
-        product.price.includes(value)        
+        (product.active ? "active" : "inactive") === value ||
+        product.id.includes(value) ||
+        product.name.includes(value) ||
+        product.quantity === value ||
+        product.price === value
       );
     });
     setProductList(searchedResult);

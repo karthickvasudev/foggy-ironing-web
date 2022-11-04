@@ -35,24 +35,12 @@ export default function Login() {
     });
 
     const devLoginHandle = () => {
-      if (
-        profile.name === undefined ||
-        profile.email === undefined ||
-        profile.devKey === undefined ||
-        profile.devId === undefined
-      ) {
+      if (profile.name === undefined || profile.email === undefined) {
         alert("login error");
       } else {
-        if (
-          !(devKeys[0] === profile.devKey) ||
-          !(devKeys[1] === profile.devId)
-        ) {
-          alert("login error");
-        } else {
-          auth.loggedIn(profile);
-          navigate("/", { replace: true });
-          window.location.reload();
-        }
+        auth.loggedIn(profile);
+        navigate("/", { replace: true });
+        window.location.reload();
       }
     };
 
@@ -107,36 +95,6 @@ export default function Login() {
                     value={profile.email}
                     onChange={(e) => {
                       setProfile({ ...profile, email: e.target.value });
-                    }}
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="devId" className="form-label">
-                    Dev Id
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="devId"
-                    value={profile.devId}
-                    onChange={(e) => {
-                      setProfile({ ...profile, devId: e.target.value });
-                    }}
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="devKey" className="form-label">
-                    Dev Key
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="devKey"
-                    value={profile.devKey}
-                    onChange={(e) => {
-                      setProfile({ ...profile, devKey: e.target.value });
                     }}
                   />
                 </div>

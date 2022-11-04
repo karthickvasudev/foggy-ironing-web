@@ -17,6 +17,7 @@ import EditProduct from "../pages/products/EditProduct";
 import Orders from "../pages/orders/Orders";
 import ViewOrder from "../pages/orders/ViewOrder";
 import CreateOrder from "../pages/orders/CreateOrder";
+import LoadingSpinner from "../components/LoadingSpinner";
 const cors = require("cors");
 
 const constants = require("../constants/Constants");
@@ -37,126 +38,129 @@ export default function ProjectRouter() {
   });
 
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        {/* login page parent route */}
-        <Routes>
-          <Route path="/*" element={<PageNotFound />} />
-          <Route path="/user/login" element={<Login />} />
-          <Route
-            path="/"
-            element={
-              <RequireAuth>
-                <MainPage />
-              </RequireAuth>
-            }
-          >
-            {/* dashboard */}
+    <>
+      <LoadingSpinner />
+      <AuthProvider>
+        <BrowserRouter>
+          {/* login page parent route */}
+          <Routes>
+            <Route path="/*" element={<PageNotFound />} />
+            <Route path="/user/login" element={<Login />} />
             <Route
-              path=""
+              path="/"
               element={
                 <RequireAuth>
-                  <Dashboard />
+                  <MainPage />
                 </RequireAuth>
               }
-            />
-            <Route path="orders">
+            >
+              {/* dashboard */}
               <Route
                 path=""
                 element={
                   <RequireAuth>
-                    <Orders />
-                  </RequireAuth>
-                }
-              ></Route>
-              <Route
-                path="create"
-                element={
-                  <RequireAuth>
-                    <CreateOrder />
+                    <Dashboard />
                   </RequireAuth>
                 }
               />
-            </Route>
-            {/* Orders route */}
-            <Route path="orders">
-              <Route
-                path=""
-                element={
-                  <RequireAuth>
-                    <Orders />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path=":id"
-                element={
-                  <RequireAuth>
-                    <ViewOrder />
-                  </RequireAuth>
-                }
-              />
-            </Route>
+              <Route path="orders">
+                <Route
+                  path=""
+                  element={
+                    <RequireAuth>
+                      <Orders />
+                    </RequireAuth>
+                  }
+                ></Route>
+                <Route
+                  path="create"
+                  element={
+                    <RequireAuth>
+                      <CreateOrder />
+                    </RequireAuth>
+                  }
+                />
+              </Route>
+              {/* Orders route */}
+              <Route path="orders">
+                <Route
+                  path=""
+                  element={
+                    <RequireAuth>
+                      <Orders />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path=":id"
+                  element={
+                    <RequireAuth>
+                      <ViewOrder />
+                    </RequireAuth>
+                  }
+                />
+              </Route>
 
-            {/* Product Route */}
+              {/* Product Route */}
 
-            <Route path="products">
-              <Route
-                path=""
-                element={
-                  <RequireAuth>
-                    <ProductList />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="create"
-                element={
-                  <RequireAuth>
-                    <CreateProduct />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path=":id/edit"
-                element={
-                  <RequireAuth>
-                    <EditProduct />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path=":id"
-                element={
-                  <RequireAuth>
-                    <ViewProduct />
-                  </RequireAuth>
-                }
-              />
-            </Route>
+              <Route path="products">
+                <Route
+                  path=""
+                  element={
+                    <RequireAuth>
+                      <ProductList />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="create"
+                  element={
+                    <RequireAuth>
+                      <CreateProduct />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path=":id/edit"
+                  element={
+                    <RequireAuth>
+                      <EditProduct />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path=":id"
+                  element={
+                    <RequireAuth>
+                      <ViewProduct />
+                    </RequireAuth>
+                  }
+                />
+              </Route>
 
-            {/* customers rout */}
-            <Route path="customers">
-              <Route
-                path=""
-                element={
-                  <RequireAuth>
-                    <CustomerList />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="create"
-                element={
-                  <RequireAuth>
-                    <CreateCustomer />
-                  </RequireAuth>
-                }
-              />
+              {/* customers rout */}
+              <Route path="customers">
+                <Route
+                  path=""
+                  element={
+                    <RequireAuth>
+                      <CustomerList />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="create"
+                  element={
+                    <RequireAuth>
+                      <CreateCustomer />
+                    </RequireAuth>
+                  }
+                />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
+    </>
   );
 }

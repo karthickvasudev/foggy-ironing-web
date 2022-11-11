@@ -12,7 +12,7 @@ export const firebaseConfig = {
   appId: "1:852061930239:web:1458bc9f57df211565c2ca",
   measurementId: "G-7DWKQWTCRR",
 };
-let localhost = "http://localhost:8080/api/v1/";
+let localhost = "http://192.168.1.11:8080/api/v1/";
 export const ApiUrl = {
   products: localhost + "products",
   documentNumber:localhost+"documentnumber"

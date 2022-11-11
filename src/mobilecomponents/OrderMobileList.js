@@ -20,11 +20,11 @@ const getOrder = (prop, longPressEvent) => {
         </div>
         
         <div className="customer-details row mt-1">
-          <div className="col-6">
+          <div className="col-12 my-1">
             <span className="header fw-bold">Customer : </span>
             <span className="name">Karthick</span>
           </div>
-          <div className="col-6">
+          <div className="col-12 my-1">
             <span className="header fw-bold">Phone : </span>
             <small className="phone-number ">9361312424</small>
           </div>

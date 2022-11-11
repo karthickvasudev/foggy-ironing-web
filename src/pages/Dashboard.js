@@ -151,7 +151,7 @@ export default function Dashboard() {
           onClick={() => {
             navigate("orders/create");
           }}
-          className="btn btn-outline-primary position-absolute bottom-0 end-0 me-3 mb-4 d-none d-md-block"
+          className="btn btn-primary position-absolute bottom-0 end-0 me-3 mb-4 d-none d-md-block rounded-5"
         >
           Create Order
         </button>
